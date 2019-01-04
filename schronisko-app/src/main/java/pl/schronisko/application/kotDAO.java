@@ -16,7 +16,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,9 +29,12 @@ import pl.schronisko.domain.cat;
 
 @Repository
 public class kotDAO {
-
+	
 	@Autowired
 	private DataSource dataSource;
+	
+	@PersistenceContext
+	EntityManager entityManager;
 
 	Connection conn = null;
 
@@ -39,8 +46,14 @@ public class kotDAO {
 	}
 
 	List<cat> koty = new LinkedList<cat>();
-
+	
+	@Transactional
 	public void dodajKota(cat c2) {
+		
+		c2 = entityManager.merge(c2);
+	}
+
+/*	public void dodajKota(cat c2) {
 
 		String sql = "INSERT INTO koty (imie, waga, opiekun, data )VALUES (?,?,?,?)";
 		try {
@@ -73,13 +86,21 @@ public class kotDAO {
 
 		this.koty.add(c2);
 		System.out.println("super dodales kota " + c2.getName());
-	}
+	} */
 
 	/*
 	 * public List<cat> getKoty() { return koty; }
 	 */
 
-	public List<cat> pokazKoty() {
+	@Transactional
+	public List<cat> pokazKoty(){
+		
+		Query query = entityManager.createNativeQuery("SELECT *  FROM koty", cat.class);
+		List<cat> kotki=query.getResultList();
+		
+		return kotki;
+	}
+	/*public List<cat> pokazKoty() {
 		List<cat> kotki = new ArrayList();
 		String sql = "SELECT * FROM koty";
 		try {
@@ -125,7 +146,7 @@ public class kotDAO {
 				}
 			}
 		}
-	}
+	} */
 
 	public cat pokazKotaById(int id) {
 		String sql = "SELECT * FROM koty WHERE idkota =?";
@@ -153,6 +174,5 @@ public class kotDAO {
 				} catch (SQLException e) {} 
 			}
 		}
-	}
-
+	} 
 }

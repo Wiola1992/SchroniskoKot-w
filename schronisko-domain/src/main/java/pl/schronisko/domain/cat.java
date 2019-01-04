@@ -4,17 +4,30 @@
 package pl.schronisko.domain;
 
 import java.io.PrintStream;
-import java.util.Date;
-//import java.sql.Date;
+//import java.util.Date;
+import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name="koty")
 public class cat {
 	
+	@Column(name="imie")
     private String name;
+	@Column(name="data")
     public Date dateOfBirth = null;
+	@Column(name="waga")
     private double weight;
+	@Column(name="opiekun")
     private String nameOfGuardian;
+    @Id
+    //@GeneratedValue
+    @Column(name="idkota")
     private int id;
 
     public void przedstawSie() {

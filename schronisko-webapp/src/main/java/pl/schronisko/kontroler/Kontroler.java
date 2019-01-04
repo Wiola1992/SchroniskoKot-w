@@ -65,8 +65,11 @@ public class Kontroler {
 		kot.setName(form.getName());
 		kot.setWeight(form.getWeight());
 		kot.setGuardian(form.getNameOfGuardian());
-		//java.sql.Date sDate = new java.sql.Date(form.getDateOfBirth());
-		kot.setDateOfBirth(form.getDateOfBirth());
+		if(form.getDateOfBirth()!=null) {
+			java.sql.Date sDate = new java.sql.Date(form.getDateOfBirth().getTime());
+			kot.setDateOfBirth(sDate);
+		}
+		
 		//dao.dodajKota(kot);
 		
 		if(result.hasErrors()) {
