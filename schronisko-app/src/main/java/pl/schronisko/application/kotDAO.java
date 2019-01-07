@@ -54,7 +54,7 @@ public class kotDAO {
 	}
 	
 
-/* Czyste JDBC 
+/* Czyste JDBC comit
  * 	public void dodajKota(cat c2) {
 
 		String sql = "INSERT INTO koty (imie, waga, opiekun, data )VALUES (?,?,?,?)";
