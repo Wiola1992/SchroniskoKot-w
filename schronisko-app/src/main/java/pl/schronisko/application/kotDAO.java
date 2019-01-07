@@ -52,8 +52,10 @@ public class kotDAO {
 		
 		c2 = entityManager.merge(c2);
 	}
+	
 
-/*	public void dodajKota(cat c2) {
+/* Czyste JDBC 
+ * 	public void dodajKota(cat c2) {
 
 		String sql = "INSERT INTO koty (imie, waga, opiekun, data )VALUES (?,?,?,?)";
 		try {
