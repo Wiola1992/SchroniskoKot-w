@@ -11,15 +11,17 @@
 <body>
 
 	<h1>Strona schroniska</h1>
-		<p>Oto lista wszystkich kotów zapisanych w naszej bazie:</p>
+		
 		<c:if test="${empty koty}">
+		</br>
 			Obecnie w bazie nie ma żadnego kota </br>
-			<a href="/schronisko-webapp/dodaj"> Dodaj nowego kota </a>
+			</br>
 		</c:if>
 		</br>
 		
 		<c:if test="${not empty koty}">
-		
+			<p>Oto lista wszystkich kotów zapisanych w naszej bazie:</p>
+			</br>
 			<c:forEach varStatus="status" var="kot" items="${koty}">  
 				<a href="<c:url value="/pokazkota/${kot.id}"/>">  ${kot.name} ${kot.dateOfBirth }   </a></br>
 			

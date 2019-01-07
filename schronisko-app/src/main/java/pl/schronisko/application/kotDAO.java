@@ -54,101 +54,19 @@ public class kotDAO {
 	}
 	
 
-/* Czyste JDBC comit
- * 	public void dodajKota(cat c2) {
-
-		String sql = "INSERT INTO koty (imie, waga, opiekun, data )VALUES (?,?,?,?)";
-		try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, c2.getName());
-			ps.setDouble(2, c2.getWeight());
-			ps.setString(3, c2.getGuardian());
-		//	java.sql.Date sqlDate = new java.sql.Date();
-		//	 java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
-			
-			if(c2.getDateOfBirth()!=null) {
-				java.sql.Date sqlDate = new java.sql.Date(c2.getDateOfBirth().getTime());
-				ps.setDate(4, sqlDate);
-			} else ps.setDate(4, null);
-			ps.executeUpdate();
-			ps.close();
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-
-		this.koty.add(c2);
-		System.out.println("super dodales kota " + c2.getName());
-	} */
-
-	/*
-	 * public List<cat> getKoty() { return koty; }
-	 */
 
 	@Transactional
 	public List<cat> pokazKoty(){
 		
 		Query query = entityManager.createNativeQuery("SELECT *  FROM koty", cat.class);
-		List<cat> kotki=query.getResultList();
-		
-		return kotki;
-	}
-	/*public List<cat> pokazKoty() {
-		List<cat> kotki = new ArrayList();
-		String sql = "SELECT * FROM koty";
-		try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			cat kot = null;
-			
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				
-			//	rs.getDate("data");
-				java.sql.Date sqlDate = rs.getDate("data");
-				
-				if (sqlDate != null) {
-			        Date  dateOfBirth = new Date(sqlDate.getTime());
-			            kot = new cat(
-
-							rs.getString("imie"), rs.getDouble("waga"), rs.getString("opiekun"), rs.getInt("idkota"), dateOfBirth);
-						
-			            kotki.add(kot);
-						
-				} else {
-						kot = new cat(
-
-							 rs.getString("imie"), rs.getDouble("waga"), rs.getString("opiekun"), rs.getInt("idkota"));
-			        	
-						kotki.add(kot);
-				}
-				
-			}
-			rs.close();
-			ps.close();
+		if(query.getResultList()==null) {
+			List<cat> kotki= new ArrayList<cat>();
 			return kotki;
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
+		} else {
+			List<cat> kotki=query.getResultList();
+			return kotki;
 		}
-	} */
+	}
 
 	public cat pokazKotaById(int id) {
 		String sql = "SELECT * FROM koty WHERE idkota =?";
@@ -164,6 +82,7 @@ public class kotDAO {
 				kot.setName(rs.getString("imie"));
 				kot.setWeight(rs.getDouble("waga"));
 				kot.setGuardian(rs.getString("opiekun"));
+				kot.setDateOfBirth(rs.getDate("data"));
 			} 
 				rs.close(); 
 				ps.close();

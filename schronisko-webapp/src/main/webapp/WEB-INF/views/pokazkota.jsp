@@ -13,9 +13,10 @@
 	<h1>Strona schroniska</h1>
 	<p>tu są dane wybranego kota</p>
 	<ul>
-		<li><strong>Imię kota to ${kot.name}</strong></li>
-		<li><strong>Jego waga ${kot.weight} kg</strong></li>
-		<li><strong>Imię opiekuna ${kot.guardian}</strong></li>
+		<li><strong>Imię kota to ${kotById.name}</strong></li>
+		<li><strong>Jego waga ${kotById.weight} kg</strong></li>
+		<li><strong>Imię opiekuna ${kotById.guardian}</strong></li>
+		<li><strong>Data urodzenia ${kotById.dateOfBirth}</strong></li>
 		
 	</ul>
 

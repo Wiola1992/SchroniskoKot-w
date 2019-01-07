@@ -26,8 +26,6 @@ public class Kontroler {
 	@Autowired
 	private kotDAO dao;
 	
-
-	
 	@RequestMapping
 	public String menu(Model model) {
 		model.addAttribute("informacja", "Menu");
@@ -48,7 +46,7 @@ public class Kontroler {
 	
 	public String pokazKota(Model model, @PathVariable("id") Integer id ) {
 		cat kotById = dao.pokazKotaById(id);
-		model.addAttribute("kot", kotById);
+		model.addAttribute("kotById", kotById);
 		return "pokazkota";
 	}
 	
@@ -69,8 +67,6 @@ public class Kontroler {
 			java.sql.Date sDate = new java.sql.Date(form.getDateOfBirth().getTime());
 			kot.setDateOfBirth(sDate);
 		}
-		
-		//dao.dodajKota(kot);
 		
 		if(result.hasErrors()) {
 		return "formularz";
