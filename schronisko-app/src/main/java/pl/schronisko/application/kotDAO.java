@@ -68,32 +68,17 @@ public class kotDAO {
 		}
 	}
 
+	@Transactional
 	public cat pokazKotaById(int id) {
-		String sql = "SELECT * FROM koty WHERE idkota =?";
-		try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			cat kot = null;
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) { 
-				kot = new cat();
-				kot.setId(rs.getInt("idkota")); 
-				kot.setName(rs.getString("imie"));
-				kot.setWeight(rs.getDouble("waga"));
-				kot.setGuardian(rs.getString("opiekun"));
-				kot.setDateOfBirth(rs.getDate("data"));
-			} 
-				rs.close(); 
-				ps.close();
-				return kot;
-		} catch (SQLException e) { 
-			throw new RuntimeException(e); 
-		} finally { 
-			if (conn != null) { 
-				try { conn.close();
-				} catch (SQLException e) {} 
-			}
+		Query query =entityManager.createNativeQuery("SELECT * FROM koty WHERE idkota =?", cat.class);
+		query.setParameter(1, id);
+		   
+		    if (query.getResultList() == null ) {
+		        return null;
+		    } else {
+		    List<cat> list = query.getResultList();
+		    return list.get(0);
+		    }
 		}
-	} 
+	
 }
