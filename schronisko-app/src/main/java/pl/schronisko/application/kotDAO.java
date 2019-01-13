@@ -68,7 +68,7 @@ public class kotDAO {
 		}
 	}
 
-	@Transactional
+	/*@Transactional
 	public cat pokazKotaById(int id) {
 		Query query =entityManager.createNativeQuery("SELECT * FROM koty WHERE idkota =?", cat.class);
 		query.setParameter(1, id);
@@ -80,5 +80,5 @@ public class kotDAO {
 		    return list.get(0);
 		    }
 		}
-	
+	*/
 }

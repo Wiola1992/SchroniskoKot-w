@@ -32,6 +32,8 @@
 		</br>
 		<a href="/schronisko-webapp/dodaj"> Dodaj nowego kota </a>
 		</br>
+		<a href="/schronisko-webapp/kontakt"> Napisz wiadomość do nas </a>
+		</br>
 		<a href="/schronisko-webapp"> Powrót do strony głównej</a>
 </body>
 </html>

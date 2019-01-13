@@ -9,7 +9,7 @@
 <body>
 
 	<h1>Strona schroniska</h1>
-	<p>Formularz został wysłany prawidłowo. Dziękujemy.</p>
+	<p>${informacja}</p>
 	<a href="/schronisko-webapp"> Powrót do strony głównej</a>
 </body>
 </html>

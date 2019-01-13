@@ -31,7 +31,6 @@
 				<tr><td>Data urodzenia kota</td><td><form:input type="date" path="dateOfBirth" /></td><td><c:if test="${pageContext.request.method=='POST'}"><form:errors path="dateOfBirth" /></c:if></td></tr>
 			
 			</table>
-			dupa
 			<br />
 			
 			
@@ -39,5 +38,8 @@
 		</form:form>  
 	<br />
 	<a href="/schronisko-webapp/wszystkie"> Powrót do listy kotów</a>
+	<br />
+	<br />
+	<a href="/schronisko-webapp/kontakt"> Napisz wiadomość do nas </a>
 </body>
 </html>
