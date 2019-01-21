@@ -18,7 +18,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.schronisko.application.CatRepository;
 import pl.schronisko.application.EmailService;
-import pl.schronisko.application.kotDAO;
+import pl.schronisko.application.ToyRepository;
+import pl.schronisko.domain.Toy;
 import pl.schronisko.domain.cat;
 import pl.schronisko.kontroler.FormularzDTO;
 
@@ -26,14 +27,18 @@ import pl.schronisko.kontroler.FormularzDTO;
 @RequestMapping
 public class Kontroler {
 	
-	@Autowired
-	private kotDAO dao;
 	
 	@Autowired
 	protected CatRepository catDao;
 	
 	@Autowired
+	protected ToyRepository toyDao;
+	
+	@Autowired
 	protected EmailService emailService;
+	
+	@Autowired
+	protected ToyService toyService;
 	
 	@RequestMapping
 	public String menu(Model model) {
@@ -43,6 +48,7 @@ public class Kontroler {
 	
 	@RequestMapping("/wszystkie")
 	public String pokazWszystkie(Model model) {
+	
 		Iterable<cat> koty = catDao.findAll();
 		
 		model.addAttribute("koty", koty);
@@ -55,9 +61,19 @@ public class Kontroler {
 	
 	public String pokazKota(Model model, @PathVariable("id") Integer id ) {
 		Optional<cat> opt = catDao.findById(id);
-		model.addAttribute("kotById", opt.get());
+		cat kot = new cat();
+		if (opt != null) {
+			kot = opt.get();
+		} 
+		
+		List<Toy> zabawki =toyService.findAllToyByCat(kot);
+		model.addAttribute("kotById", kot);
+		model.addAttribute("zabawki", zabawki);
+		model.addAttribute("id", id);
 		return "pokazkota";
 	}
+	
+	
 	
 	@RequestMapping(value="/dodaj", method=RequestMethod.GET)
 	public String formularz(Model model) {
@@ -81,7 +97,7 @@ public class Kontroler {
 		return "formularz";
 		} else {
 			catDao.save(kot);
-			//dao.dodajKota(kot);
+			
 			return "redirect:/poFormularzu";
 		}
 	}

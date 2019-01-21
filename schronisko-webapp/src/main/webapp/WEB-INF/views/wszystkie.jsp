@@ -24,7 +24,7 @@
 			</br>
 			<c:forEach varStatus="status" var="kot" items="${koty}">  
 				<a href="<c:url value="/pokazkota/${kot.id}"/>">  ${kot.name} ${kot.dateOfBirth }   </a></br>
-			
+				
 			</c:forEach>
 		
 		</c:if>

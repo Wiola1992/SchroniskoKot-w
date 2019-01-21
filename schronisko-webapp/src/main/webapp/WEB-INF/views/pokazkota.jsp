@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,8 +19,28 @@
 		<li><strong>Jego waga ${kotById.weight} kg</strong></li>
 		<li><strong>Imię opiekuna ${kotById.guardian}</strong></li>
 		<li><strong>Data urodzenia ${kotById.dateOfBirth}</strong></li>
-		
 	</ul>
+		
+	<c:if test="${empty zabawki}" > 
+		Ten kot nie posiada jeszcze zabawki.
+	</c:if>
+	<c:if test="${not empty zabawki}">
+		Oto lista zabawek:</br>
+		<c:forEach  var="zabawka" items="${zabawki}">  
+			${zabawka.name} </br>
+			
+			<a href="../kot/${id}/zabawka/${zabawka.idToys}/remove"> Usuń zabawkę </a>
+			</br>
+			</br>
+			
+		</c:forEach>
+	</c:if>
+
+	
+	<a href="../kot/${id}/zabawka/add"> Dodaj nową zabawkę </a>
+	</br>
+
+	
 
 <a href="/schronisko-webapp/wszystkie"> Pokaż wszystkie koty </a>
 

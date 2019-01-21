@@ -18,11 +18,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pl.schronisko.domain.cat;
-import pl.schronisko.application.kotDAO;
 
 public class interfejs {
     static Scanner s1 = new Scanner(System.in);
-    static kotDAO kotdao = new kotDAO();
 
     public static String getUsserInput() {
         return s1.nextLine().trim();
@@ -46,7 +44,7 @@ public class interfejs {
                 continue;
             }
             if (choice.equalsIgnoreCase("2")) {
-                interfejs.pokazKoty();
+                //interfejs.pokazKoty();
                 continue;
             }
             if (!choice.equalsIgnoreCase("z")) continue;
@@ -97,34 +95,9 @@ public class interfejs {
             System.out.println("Co\u015b jest nie tak z formatem! Sprobuj jeszcze raz, waga musi by\u0107 liczb\u0105 np 9,2  ");
         }
         c2.przedstawSie();
-        kotdao.dodajKota(c2);
     }
 
-    public static void pokazKoty() {
-        System.out.println("Lista wszystkich kotow");
-        int i = 0;
-        while (i < interfejs.kotdao.koty.size()) {
-            interfejs.kotdao.koty.get(i);
-            System.out.println("Nr. " + (i + 1) + " " + ((cat)interfejs.kotdao.koty.get(i)).getName());
-            ++i;
-        }
-        System.out.println("Jakiego kota chcesz obejrzec? nacisnij nr porzadkowy.");
-        interfejs.wybierzKota();
-    }
+ 
 
-    public static void wybierzKota() {
-        String wczytanyNumer = interfejs.getUsserInput();
-        int numerKota = Integer.parseInt(wczytanyNumer) - 1;
-        Pattern paternNumer = Pattern.compile("[0-9]");
-        Matcher matcherNumer = paternNumer.matcher(wczytanyNumer);
-        matcherNumer.matches();
-        if (matcherNumer.matches() && interfejs.kotdao.koty.size() > numerKota && numerKota >= 0) {
-            cat pokazywanyKot = (cat)interfejs.kotdao.koty.get(numerKota);
-            System.out.println("wybrales " + pokazywanyKot.getName());
-            System.out.println(String.valueOf(pokazywanyKot.getName()) + " urodzil sie " + pokazywanyKot.getDateOfBirth() + " a teraz wazy " + pokazywanyKot.getWeight());
-        } else {
-            System.out.println("Sprobuj jeszcze raz. Aktualna liczba kotow to " + interfejs.kotdao.koty.size());
-        }
-        interfejs.pokazKoty();
-    }
+  
 }

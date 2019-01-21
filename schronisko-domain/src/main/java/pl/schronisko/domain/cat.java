@@ -6,11 +6,13 @@ package pl.schronisko.domain;
 import java.io.PrintStream;
 //import java.util.Date;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,12 +27,24 @@ public class cat {
     private double weight;
 	@Column(name="opiekun")
     private String nameOfGuardian;
-    @Id
+   
+	@Id
     //@GeneratedValue
     @Column(name="idkota")
     private int id;
+    
+    @OneToMany(mappedBy="owner")
+    private List<Toy> toysList;
 
-    public void przedstawSie() {
+    public List<Toy> getToysList() {
+		return toysList;
+	}
+
+	public void setToysList(List<Toy> toysList) {
+		toysList = toysList;
+	}
+
+	public void przedstawSie() {
         System.out.println(String.valueOf(this.name) + " waga  " + this.weight + " urodzil sie " + this.dateOfBirth + " a jego opiekun to " + this.nameOfGuardian);
     }
 
@@ -56,6 +70,12 @@ public class cat {
     public cat(String name, double weight, String guardian, int id, Date dateOfBirth ) {
     	this(name, weight, guardian, id);
     	this.dateOfBirth =dateOfBirth;
+    }
+    
+    public cat(String name, double weight, String guardian, int id, Date dateOfBirth, List<Toy> toys ) {
+    	this(name, weight, guardian, id);
+    	this.dateOfBirth =dateOfBirth;
+    	this.toysList = toys;
     }
 
     public String getName() {
