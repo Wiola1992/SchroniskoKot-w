@@ -1,2 +1,11 @@
-pl\schronisko\kontroler\FormularzDTO.class
+pl\schronisko\kontroler\EmailService.class
+pl\schronisko\kontroler\EmailService$1.class
+pl\schronisko\kontroler\KontrolerZabawki.class
+pl\schronisko\kontroler\UserService.class
 pl\schronisko\kontroler\Kontroler.class
+pl\schronisko\kontroler\ToyService.class
+pl\schronisko\kontroler\FormularzDTO.class
+pl\schronisko\kontroler\FormularzDTOKontakt.class
+pl\schronisko\kontroler\FormularzDTOUser.class
+pl\schronisko\kontroler\FormularzZabawka.class
+pl\schronisko\kontroler\ControllerUser.class

@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.schronisko.application.CatRepository;
-import pl.schronisko.application.EmailService;
+//import pl.schronisko.application.EmailService;
 import pl.schronisko.application.ToyRepository;
 import pl.schronisko.domain.Toy;
 import pl.schronisko.domain.cat;
@@ -46,6 +47,7 @@ public class Kontroler {
 		return "menu";
 	}
 	
+	@Secured({ "ROLE_USER"})
 	@RequestMapping("/wszystkie")
 	public String pokazWszystkie(Model model) {
 	
@@ -57,6 +59,7 @@ public class Kontroler {
 		return "wszystkie";
 	}
 	
+	@Secured({ "ROLE_USER"})
 	@RequestMapping("/pokazkota/{id}")
 	
 	public String pokazKota(Model model, @PathVariable("id") Integer id ) {
@@ -74,13 +77,14 @@ public class Kontroler {
 	}
 	
 	
-	
+	@Secured({ "ROLE_USER"})
 	@RequestMapping(value="/dodaj", method=RequestMethod.GET)
 	public String formularz(Model model) {
 		model.addAttribute("form", new FormularzDTO());
 		return "formularz";
 	}
 	
+	@Secured({ "ROLE_USER"})
 	@RequestMapping(value="/dodaj", method=RequestMethod.POST)
 	public String obsluzFormularz(@ModelAttribute("form") @Valid FormularzDTO form, BindingResult result ) {
 		

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>MiazgusioweSchronisko</groupId>
 	<artifactId>SchroniskoKotow</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<dependencies>
@@ -13,11 +13,19 @@
 			<artifactId>spring-core</artifactId>
 			<version>5.1.2.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
 	<modules>
 		<module>schronisko-app</module>
 		<module>schronisko-domain</module>
-		
+
 		<module>schronisko-webapp</module>
 	</modules>
 </project>

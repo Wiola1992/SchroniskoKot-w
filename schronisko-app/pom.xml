@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>MiazgusioweSchronisko</groupId>
 		<artifactId>SchroniskoKotow</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>schronisko-app</artifactId>
 	<groupId>SchroniskoKotow</groupId>
@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>MiazgusioweSchronisko</groupId>
 			<artifactId>schronisko-domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

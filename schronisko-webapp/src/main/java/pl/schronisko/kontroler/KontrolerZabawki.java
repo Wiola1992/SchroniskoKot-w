@@ -3,6 +3,7 @@ package pl.schronisko.kontroler;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +19,14 @@ public class KontrolerZabawki {
 	@Autowired
 	ToyService toyService;
 	
+	@Secured({ "ROLE_USER"})
 	@RequestMapping(value="/kot/{idK}/zabawka/add", method=RequestMethod.GET)
 	public String dodawanieZabawki (Model model, @PathVariable("idK") Integer id) {
 		model.addAttribute("ToyAdd", new FormularzZabawka());
 		return "zabawkaAdd";
 	}
 	
+	@Secured({ "ROLE_USER"})
 	@RequestMapping(value="/kot/{idK}/zabawka/add", method=RequestMethod.POST)
 	public String obsluzFormularzZabawki(@ModelAttribute("ToyAdd") @Valid FormularzZabawka ToyAdd, BindingResult result, @PathVariable("idK") Integer id, Model model ) {
 		model.addAttribute("id", id);
