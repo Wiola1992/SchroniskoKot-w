@@ -12,5 +12,13 @@ import pl.schronisko.domain.cat;
 public interface ToyRepository extends CrudRepository<Toy, Integer> {
 
 	public List<Toy> findByOwner(cat cat);
+	
+	
+	public Toy findByIdToys(int id);
+	
+	
+	
+	
+	
 }
  

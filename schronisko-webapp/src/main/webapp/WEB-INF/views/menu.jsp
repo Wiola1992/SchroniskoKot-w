@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,17 +9,18 @@
 </head>
 <body>
 
-	<h1>Schronisko kotów </h1>
-	<p>Jest to schronisko prowadzone przez Miazgusiową rodzinę</p>
+	<h1><spring:message code="webapp.kontroler.menu.title" /> </h1>
+	<spring:message code="webapp.kontroler.menu.subtitle" />
 	<br/>
-	<a href="/schronisko-webapp/wszystkie">Pokaż wszystkie koty</a> 
+	<a href="/schronisko-webapp/wszystkie"><spring:message code="webapp.kontroler.menu.allLink" /></a> 
 	<br/>
-	<a href="/schronisko-webapp/dodaj">Dodaj nowego kota do bazy</a>
+	<a href="/schronisko-webapp/dodaj"><spring:message code="webapp.kontroler.menu.newLink" /></a>
 	<br/>
-	<a href="/schronisko-webapp/registration"> Zarejestruj się </a>
+	<a href="/schronisko-webapp/registration"> <spring:message code="webapp.kontroler.menu.registrationLink" /></a>
 		</br>
 	
-	
+	<a href="/schronisko-webapp/?language=pl ">Polski</a>
+		<a href="/schronisko-webapp/?language=en ">Angielski</a>
 
 </body>
 </html>

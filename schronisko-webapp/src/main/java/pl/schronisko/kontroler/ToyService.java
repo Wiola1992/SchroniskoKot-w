@@ -49,8 +49,9 @@ public class ToyService {
 	} 
 	
 	public Toy findToyByIdToys(int id) {
-		Optional<Toy> toy = toyDAO.findById(id);
-		return toy.get();
+		//Optional<Toy> toy = toyDAO.findById(id);
+		Toy toy = toyDAO.findByIdToys(id);
+		return toy;
 	}
 	
 	public void deleteToyById(int id) {

@@ -63,11 +63,12 @@ public class Kontroler {
 	@RequestMapping("/pokazkota/{id}")
 	
 	public String pokazKota(Model model, @PathVariable("id") Integer id ) {
+		//Optional<cat> opt = catDao.findById(id);
 		Optional<cat> opt = catDao.findById(id);
 		cat kot = new cat();
-		if (opt != null) {
+		if(opt!=null) {
 			kot = opt.get();
-		} 
+		}
 		
 		List<Toy> zabawki =toyService.findAllToyByCat(kot);
 		model.addAttribute("kotById", kot);
