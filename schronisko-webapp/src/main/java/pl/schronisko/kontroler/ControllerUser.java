@@ -23,7 +23,7 @@ public class ControllerUser {
 	protected UserService userService;
 
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
-	public String logowanie (Model model, FormularzDTOUser formUser  ) {
+	public String logowanie (Model model ) {
 		model.addAttribute("formUser", new FormularzDTOUser());
 		return "formularzUser";
 		

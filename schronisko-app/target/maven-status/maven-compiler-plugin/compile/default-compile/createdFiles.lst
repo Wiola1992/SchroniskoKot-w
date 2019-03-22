@@ -1,4 +1,5 @@
 pl\schronisko\application\CatService.class
+pl\schronisko\application\FileRepository.class
 pl\schronisko\application\interfejs.class
 pl\schronisko\application\CatRepository.class
 pl\schronisko\application\UserRepository.class

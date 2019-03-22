@@ -26,7 +26,7 @@ public class interfejs {
         return s1.nextLine().trim();
     }
 
-    public static void viewMenu() {
+    /* public static void viewMenu() {
         System.out.println("Witaj na portalu schronisko");
         System.out.println("Nacisnij: ");
         System.out.println("1 - dodaj nowego kotka");
@@ -39,7 +39,7 @@ public class interfejs {
         do {
             interfejs.viewMenu();
             choice = interfejs.getUsserInput();
-            if (choice.equalsIgnoreCase("1")) {
+           if (choice.equalsIgnoreCase("1")) {
                 interfejs.dodajKotka();
                 continue;
             }
@@ -50,9 +50,9 @@ public class interfejs {
             if (!choice.equalsIgnoreCase("z")) continue;
             System.out.println("koniec?");
         } while (!choice.equalsIgnoreCase("x"));
-    }
+    } */
 
-    public static void dodajKotka() {
+ /*   public static void dodajKotka() {
         cat c2 = new cat();
         System.out.println("Podaj imie kota i jego opiekuna");
         c2.setName(interfejs.getUsserInput());
@@ -96,7 +96,7 @@ public class interfejs {
         }
         c2.przedstawSie();
     }
-
+*/
  
 
   

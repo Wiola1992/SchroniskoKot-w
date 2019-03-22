@@ -31,7 +31,7 @@
 		</form:form>  
 		
 
-<a href="/schronisko-webapp/wszystkie"> Pokaż wszystkie koty </a>
+<a href="/schronisko-webapp/pokazkota/${id}"> Powrót </a>
 
 </body>
 </html>

@@ -1,3 +1,10 @@
+pl\schronisko\pogoda\Wind.class
+pl\schronisko\pogoda\Lista.class
+pl\schronisko\pogoda\Weather.class
+pl\schronisko\domain\FileMetaData.class
 pl\schronisko\domain\Toy.class
+pl\schronisko\pogoda\City.class
 pl\schronisko\domain\cat.class
+pl\schronisko\pogoda\MainProp.class
+pl\schronisko\pogoda\PogodaRest.class
 pl\schronisko\domain\User.class

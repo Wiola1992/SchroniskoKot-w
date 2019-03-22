@@ -31,12 +31,15 @@ public class ToyService {
 		Toy zabawka = new Toy();
 		zabawka.setName(formZabawka.getNameToy());
 		zabawka.setDescription(formZabawka.getDescription());
-		Optional<cat> kotek =catDAO.findById(id);
 		
-		if(kotek !=null) {
-			
-			zabawka.setOwner(kotek.get());
-		}
+		cat kotek = catDAO.findById(id);
+	/*	Optional<cat> opt =catDAO.findById(id);
+		cat kot = new cat();
+		if(opt!=null) {
+			kotek = opt.get();
+		} */
+		zabawka.setOwner(kotek);
+		
 		toyDAO.save(zabawka);
 		
 	}

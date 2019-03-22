@@ -19,24 +19,43 @@
 		<li><strong>Imię opiekuna ${kotById.guardian}</strong></li>
 		<li><strong>Data urodzenia ${kotById.dateOfBirth}</strong></li>
 	</ul>
+	<a href="/schronisko-webapp/pokazkota/${id}/file"> Dodaj zdjęcie </a>
+	</br>
+	</br>
+	<c:if test="${empty files}" > 
+		W bazie nie dodano zdjęcia.
+	</c:if>
+	<c:if test="${not empty files}">
+		Oto zdjęcia:
+		</br>
+		</br>
+		<c:forEach  var="file" items="${files}">  
+			${file.originalFilename} 
+						
+			<a href="/schronisko-webapp/pokazkota/{id}/file/${file.name}"> Pobierz zdjęcie </a>
+			</br>
+		</c:forEach>
+	</c:if>
 		
 	<c:if test="${empty zabawki}" > 
 		Ten kot nie posiada jeszcze zabawki.
 	</c:if>
 	<c:if test="${not empty zabawki}">
-		Oto lista zabawek:</br>
+		Oto lista zabawek:
+		</br>
+		</br>
 		<c:forEach  var="zabawka" items="${zabawki}">  
-			${zabawka.name} </br>
+			${zabawka.name} 			
+			<a href="/schronisko-webapp/pokazkota/${id}/zabawka/${zabawka.idToys}/remove"> Usuń zabawkę </a>
 			
-			<a href="../kot/${id}/zabawka/${zabawka.idToys}/remove"> Usuń zabawkę </a>
-			</br>
 			</br>
 			
 		</c:forEach>
 	</c:if>
+	</br>
 
 	
-	<a href="../kot/${id}/zabawka/add"> Dodaj nową zabawkę </a>
+	<a href="/schronisko-webapp/pokazkota/${id}/zabawka/add"> Dodaj nową zabawkę </a>
 	</br>
 
 	

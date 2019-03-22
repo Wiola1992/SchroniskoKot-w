@@ -3,21 +3,26 @@ package pl.schronisko.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
 public class User {
 	
-	@Column(name="id_user")
+	@Column(name="id_user",  updatable = false)
 	@Id
-	//@GeneratedValue
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	int idUser;
 	@Column(name="user_name")
 	String userName;
+	@Column(name="password")
 	String password;
+	@Column(name="role")
 	String role;
+	@Column(name="enabled")
 	int enabled;
 	
 	public User() {

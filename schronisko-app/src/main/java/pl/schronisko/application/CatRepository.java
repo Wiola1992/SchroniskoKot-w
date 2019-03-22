@@ -12,5 +12,5 @@ import pl.schronisko.domain.cat;
 public interface CatRepository extends CrudRepository<cat, Integer> {
 	
 	
-	//public cat findById(int id);
+	public cat findById(int id);
 }

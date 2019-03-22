@@ -18,6 +18,7 @@
  <a href="<c:url value="/pokazkota/${id}"/>">Powrót do szczegółów kota  </a>
 	</br>
 	
+	<a href="/schronisko-webapp/pokazkota/${id}"> Powrót </a> </br>
 
 <a href="/schronisko-webapp/wszystkie"> Pokaż wszystkie koty </a>
 

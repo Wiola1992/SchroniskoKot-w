@@ -3,6 +3,7 @@ package pl.schronisko.kontroler;
 //import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.regex.Matcher;
 
@@ -28,7 +29,7 @@ public class FormularzDTO {
 	
 	@Past (message="Only the past is valid")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
    
 	
 	@NotNull
@@ -47,10 +48,10 @@ public class FormularzDTO {
 		this.name = name;
 	}
 	
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	} 
 	public double getWeight() {

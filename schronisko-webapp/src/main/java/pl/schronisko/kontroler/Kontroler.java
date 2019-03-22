@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.schronisko.application.CatRepository;
-//import pl.schronisko.application.EmailService;
-import pl.schronisko.application.ToyRepository;
+import pl.schronisko.domain.FileMetaData;
 import pl.schronisko.domain.Toy;
 import pl.schronisko.domain.cat;
-import pl.schronisko.kontroler.FormularzDTO;
+import pl.schronisko.service.FileService;
 
 @Controller
 @RequestMapping
@@ -30,10 +28,10 @@ public class Kontroler {
 	
 	
 	@Autowired
-	protected CatRepository catDao;
+	protected CatRepository catDAO;
 	
 	@Autowired
-	protected ToyRepository toyDao;
+	protected FileService fileService;
 	
 	@Autowired
 	protected EmailService emailService;
@@ -51,7 +49,7 @@ public class Kontroler {
 	@RequestMapping("/wszystkie")
 	public String pokazWszystkie(Model model) {
 	
-		Iterable<cat> koty = catDao.findAll();
+		Iterable<cat> koty = catDAO.findAll();
 		
 		model.addAttribute("koty", koty);
 		
@@ -63,8 +61,8 @@ public class Kontroler {
 	@RequestMapping("/pokazkota/{id}")
 	
 	public String pokazKota(Model model, @PathVariable("id") Integer id ) {
-		//Optional<cat> opt = catDao.findById(id);
-		Optional<cat> opt = catDao.findById(id);
+		Optional<cat> opt = catDAO.findById(id);
+		//cat kot = catDAO.findById(id);
 		cat kot = new cat();
 		if(opt!=null) {
 			kot = opt.get();
@@ -74,6 +72,9 @@ public class Kontroler {
 		model.addAttribute("kotById", kot);
 		model.addAttribute("zabawki", zabawki);
 		model.addAttribute("id", id);
+		
+		List<FileMetaData> files = fileService.FindAllFiles(id);
+		model.addAttribute("files", files);
 		return "pokazkota";
 	}
 	
@@ -94,14 +95,15 @@ public class Kontroler {
 		kot.setWeight(form.getWeight());
 		kot.setGuardian(form.getNameOfGuardian());
 		if(form.getDateOfBirth()!=null) {
-			java.sql.Date sDate = new java.sql.Date(form.getDateOfBirth().getTime());
-			kot.setDateOfBirth(sDate);
+			//java.sql.Date sDate = new java.sql.Date(form.getDateOfBirth().getTime());
+			//kot.setDateOfBirth(sDate);
+			kot.setDateOfBirth(form.getDateOfBirth());
 		}
 		
 		if(result.hasErrors()) {
 		return "formularz";
 		} else {
-			catDao.save(kot);
+			catDAO.save(kot);
 			
 			return "redirect:/poFormularzu";
 		}

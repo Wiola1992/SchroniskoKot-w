@@ -22,10 +22,10 @@
 
 
 	</dependencies>
- <modules>
+ <!--  <modules>
 		<module>schronisko-app</module>
 		<module>schronisko-domain</module>
 
 		<module>schronisko-webapp</module>
-	</modules> 
+	</modules> -->
 </project>

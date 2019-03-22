@@ -20,15 +20,15 @@ public class KontrolerZabawki {
 	ToyService toyService;
 	
 	@Secured({ "ROLE_USER"})
-	@RequestMapping(value="/kot/{idK}/zabawka/add", method=RequestMethod.GET)
-	public String dodawanieZabawki (Model model, @PathVariable("idK") Integer id) {
+	@RequestMapping(value="/pokazkota/{id}/zabawka/add", method=RequestMethod.GET)
+	public String dodawanieZabawki (Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("ToyAdd", new FormularzZabawka());
 		return "zabawkaAdd";
 	}
 	
 	@Secured({ "ROLE_USER"})
-	@RequestMapping(value="/kot/{idK}/zabawka/add", method=RequestMethod.POST)
-	public String obsluzFormularzZabawki(@ModelAttribute("ToyAdd") @Valid FormularzZabawka ToyAdd, BindingResult result, @PathVariable("idK") Integer id, Model model ) {
+	@RequestMapping(value="/pokazkota/{id}/zabawka/add", method=RequestMethod.POST)
+	public String obsluzFormularzZabawki(@ModelAttribute("ToyAdd") @Valid FormularzZabawka ToyAdd, BindingResult result, @PathVariable("id") Integer id, Model model ) {
 		model.addAttribute("id", id);
 		if(result.hasErrors()) {
 		return "zabawkaAdd";
@@ -40,9 +40,10 @@ public class KontrolerZabawki {
 	}
 
 	
-	@RequestMapping(value="/kot/{id}/zabawka/{idToys}/remove")
+	@RequestMapping(value="/pokazkota/{id}/zabawka/{idToys}/remove")
 	public String usunZabawke(Model model, @PathVariable("id") Integer id,  @PathVariable("idToys") Integer idToys){
 		model.addAttribute("id", id);
+	//	model.addAttribute("idToys", idToys);
 		toyService.deleteToyById(idToys);
 		
 		return "zabawkaRemove";
