@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_EMPTY)
@@ -38,7 +37,6 @@ public class Lista {
 	
 	DayOfWeek dayOfWeek;
 	
-	int hour;
 	
 	public LocalDate getLocalDate() {
 		return localDate;
@@ -48,13 +46,6 @@ public class Lista {
 		this.localDate = localDate;
 	}
 
-	public int getHour() {
-		return hour;
-	}
-
-	public void setHour(int hour) {
-		this.hour = hour;
-	}
 
 	public LocalDateTime getLocalDateTime() {
 		return localDateTime;
@@ -71,7 +62,8 @@ public class Lista {
 		return dayOfWeek;
 	}
 
-	public void setDayOfWeek(DayOfWeek dayOfWeek) { 
+	public void setDayOfWeek(LocalDateTime localDateT) { 
+		DayOfWeek dayOfWeek = localDateTime.getDayOfWeek();
 		this.dayOfWeek = dayOfWeek;
 	}
 

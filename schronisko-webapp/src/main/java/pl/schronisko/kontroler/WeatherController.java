@@ -2,6 +2,7 @@ package pl.schronisko.kontroler;
 
 import java.net.MalformedURLException;
 //import java.net.URL;
+import java.util.List;
 
 import javax.validation.Valid;
 //import javax.ws.rs.client.Client;
@@ -10,6 +11,7 @@ import javax.validation.Valid;
 //import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import pl.schronisko.pogoda.Lista;
 import pl.schronisko.pogoda.PogodaRest;
 import pl.schronisko.service.WeatherService;
 
 //@Controller
+
 @RestController
 @RequestMapping(value = "rest")
 public class WeatherController {
@@ -111,7 +115,7 @@ public class WeatherController {
 				uri,
 				String.class);
 		
-		System.out.println(response.hasBody());
+		
 		System.out.println(response.getBody());
 		
 		return  response;
@@ -133,10 +137,11 @@ public class WeatherController {
 				uri,
 				PogodaRest.class);
 			PogodaRest pogoda = response.getBody();
-			
-			
-			System.out.println(response.getBody());
-			System.out.println(pogoda.getCity());
+			List<Lista> list = pogoda.getLista();
+			for(int i=0; i<list.size(); i++) {
+				String data = list.get(i).getData();
+				list.get(i).setLocalDateTime(data);
+			}
 		
 		return  pogoda;
 		}

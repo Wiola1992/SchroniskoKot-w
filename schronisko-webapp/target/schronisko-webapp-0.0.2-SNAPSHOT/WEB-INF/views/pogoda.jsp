@@ -22,7 +22,7 @@
 		<tr> 
 			<td></td>
 			<c:forEach  var="list" items="${dateList}"> 
-				<c:if test="${list.hour == 12}">
+				<c:if test="${list.localDateTime.hour == 12}">
 
 					<td>${list.localDate} </td>
 							

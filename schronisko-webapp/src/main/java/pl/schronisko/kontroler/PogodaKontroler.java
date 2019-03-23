@@ -44,11 +44,13 @@ public class PogodaKontroler {
 			RestTemplate rest = new RestTemplate();
 			PogodaRest pogoda = rest.getForObject(uri, PogodaRest.class);
 			
-			model.addAttribute("pogoda", pogoda);
-			List<Lista> list = pogoda.getLista();
-			List<Lista> listII  =weatherService.uzupelnijDate(list);
 			
-			model.addAttribute("dateList", listII);
+			
+			List<Lista> list = pogoda.getLista();
+			pogoda.setLista(weatherService.uzupelnijDate(list));
+			List<Lista> listaUzupelniona = pogoda.getLista();
+			model.addAttribute("pogoda", pogoda);
+			model.addAttribute("dateList", listaUzupelniona);
 		
 			return "pogoda"; 
 		}
